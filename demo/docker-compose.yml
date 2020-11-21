@@ -11,16 +11,6 @@ services:
       - ../:/code:cached
     working_dir: /code/demo
 
-  test:
-    command: go test -v
-    image: golang:1.15-alpine
-    ports:
-      - 8000:8000
-    volumes:
-      - ../modules:/go/pkg/mod/cache
-      - ../:/code:cached
-    working_dir: /code
-
 volumes:
   modules:
     driver: local
