@@ -1,0 +1,32 @@
+{
+  "company": {
+    "title": "FooBar Inc.",
+    "address": {
+      "address_1": "One Infinite Loop",
+      "address_2": "Cupertino, CA 95014"
+    },
+    "phone": "(408) 606-5775"
+  },
+  "invoice": {
+    "number": "321-456",
+    "date": "2020-10-10",
+    "customer": {
+      "id": 951
+    },
+    "total": 575,
+    "items": [
+      {
+        "description": "Service Fee",
+        "quantity": 1,
+        "price": 200,
+        "amount": 200
+      },
+      {
+        "description": "Labor: 5 hours at $75/hr",
+        "quantity": 5,
+        "price": 75,
+        "amount": 375
+      }
+    ]
+  }
+}
