@@ -14,10 +14,12 @@ This templator library can render Xlsx files containing data pointers enclosed b
 
 All demo files located in `demo` directory.
 
-Template file screenshot:
+You can run demo script by your own: `make demo`.
+
+#### Template file screenshot:
 
 ![Report template](https://github.com/iTearo/golang-xlsx-templator/raw/main/demo/screenshot_report_template.png)
 
-Result file screenshot:
+#### Result file screenshot:
 
 ![Result report](https://github.com/iTearo/golang-xlsx-templator/raw/main/demo/screenshot_report_result.png)
