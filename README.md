@@ -16,8 +16,8 @@ All demo files located in `demo` directory.
 
 Template file screenshot:
 
-![Report template](https://github.com/itearo/golang-xlsx-templator/demo/screenshot_report_template.png)
+![Report template](https://github.com/iTearo/golang-xlsx-templator/raw/main/demo/screenshot_report_template.png)
 
 Result file screenshot:
 
-![Result report](https://github.com/itearo/golang-xlsx-templator/demo/screenshot_report_result.png)
+![Result report](https://github.com/iTearo/golang-xlsx-templator/raw/main/demo/screenshot_report_result.png)
