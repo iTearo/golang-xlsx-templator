@@ -16,3 +16,5 @@ jobs:
         uses: actions/checkout@v2
       - name: Test
         run: go test -v
+      - name: Upload coverage report
+        run: bash <(curl -s https://codecov.io/bash)
