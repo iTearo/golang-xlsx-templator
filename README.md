@@ -1,6 +1,7 @@
 # Xlsx templator writen in GoLang
 
 ![License](https://img.shields.io/github/license/itearo/golang-xlsx-templator)
+![GoLang Version](https://img.shields.io/badge/go-%3E%3D1.14-blue)
 ![Test Status](https://img.shields.io/github/workflow/status/itearo/golang-xlsx-templator/Test?label=test)
 ![Coverage Status](https://img.shields.io/codecov/c/github/iTearo/golang-xlsx-templator)
 ![GitHub issues](https://img.shields.io/github/issues/itearo/golang-xlsx-templator)
