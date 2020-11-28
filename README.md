@@ -1,15 +1,16 @@
 # Xlsx templator writen in GoLang
 
-![License](https://img.shields.io/github/license/itearo/golang-xlsx-templator)
-![GoLang Version](https://img.shields.io/badge/go-%3E%3D1.14-blue)
+![GoLang Version](https://img.shields.io/badge/GO-%3E%3D1.14-blue)
+[![Go Report Card](https://goreportcard.com/badge/github.com/itearo/golang-xlsx-templator)](https://goreportcard.com/report/github.com/itearo/golang-xlsx-templator)
 ![Test Status](https://img.shields.io/github/workflow/status/itearo/golang-xlsx-templator/Test?label=test)
 ![Coverage Status](https://img.shields.io/codecov/c/github/iTearo/golang-xlsx-templator)
-![GitHub issues](https://img.shields.io/github/issues/itearo/golang-xlsx-templator)
-![GitHub commits since latest release](https://img.shields.io/github/commits-since/itearo/golang-xlsx-templator/latest)
+[![Issues count](https://img.shields.io/github/issues/itearo/golang-xlsx-templator)](https://github.com/iTearo/golang-xlsx-templator/issues)
+![Commits since latest release](https://img.shields.io/github/commits-since/itearo/golang-xlsx-templator/latest)
 
 This templator library can render Xlsx files containing data pointers enclosed by curly braces.
 
-[Godoc](https://godoc.org/github.com/itearo/golang-xlsx-templator)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/itearo/golang-xlsx-templator)](https://pkg.go.dev/github.com/itearo/golang-xlsx-templator)
+[![GoDoc](https://godoc.org/github.com/itearo/golang-xlsx-templator?status.svg)](https://godoc.org/github.com/itearo/golang-xlsx-templator)
 
 ## Installation
 
