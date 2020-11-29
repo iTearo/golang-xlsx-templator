@@ -25,7 +25,7 @@ func main() {
 		panic(err)
 	}
 
-	err = xlsx_templator.RenderTemplateWithData(jsonData, "./report_template.xlsx", "./report_result.xlsx")
+	err = xlsxtemplator.RenderTemplateWithData(jsonData, "./report_template.xlsx", "./report_result.xlsx")
 	if err != nil {
 		panic(err)
 	}
