@@ -1,7 +1,6 @@
-package xlsx_templator
+package xlsxtemplator
 
 import (
-	"io"
 	"reflect"
 	"regexp"
 	"strings"
@@ -14,7 +13,7 @@ var (
 	templatePropertyRegex = regexp.MustCompile(`{{\s*([\w.]+)+(\.+[\w]+)*\s*}}`)
 )
 
-// Renders result file and saves it on a disk
+// RenderTemplateWithData Renders result file and saves it on a disk
 func RenderTemplateWithData(data map[string]interface{}, templatePath string, resultPath string) error {
 	file, err := openTemplate(templatePath)
 	if err != nil {
@@ -35,11 +34,6 @@ func openTemplate(path string) (file *xlsx.File, err error) {
 
 func save(file *xlsx.File, path string) error {
 	return file.Save(path)
-}
-
-//goland:noinspection GoUnusedFunction
-func write(file *xlsx.File, writer io.Writer) error {
-	return file.Write(writer)
 }
 
 func iterateSheetsAndRows(sheets []*xlsx.Sheet, data map[string]interface{}) error {
@@ -174,7 +168,7 @@ func findSliceInPropertyPath(ctx map[string]interface{}, property string) ([]str
 				return handledPropertyParts, valueByPropertyPart.([]interface{}), true
 			}
 
-			data, ok = valueByPropertyPart.(map[string]interface{})
+			data, _ = valueByPropertyPart.(map[string]interface{})
 		}
 	}
 

@@ -1,11 +1,58 @@
 on: [push, pull_request]
 name: Test
 jobs:
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $HOME/go/bin/ latest
+      - name: Run build
+        run: go build .
+      - name: Run vet
+        run: go vet .
+      - name: Run golangci-lint
+        run: golangci-lint run -v
+      - name: Run checks
+        run: |
+          STATUS=0
+          assert-nothing-changed() {
+            "$@" >/dev/null || return 1
+            if ! diff="$(git diff -U1 --color --exit-code)"; then
+              printf '\e[31mError: running `\e[1m%s\e[22m` results in modifications that you must check into version control:\e[0m\n%s\n\n' "$*" "$diff" >&2
+              git checkout -- .
+              STATUS=1
+            fi
+          }
+          assert-nothing-changed go fmt ./...
+          assert-nothing-changed go mod tidy
+          exit $STATUS
+
   test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15.x
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Test with coverage
+        run:  go test -v -race -count=1 -coverprofile=coverage.out ./...
+      - name: Upload coverage report
+        run: (curl -s https://codecov.io/bash) | bash
+
+  platform:
     strategy:
       matrix:
-        go-version: [1.14.x, 1.15.x]
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        go-version: [ 1.14.x, 1.15.x ]
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Install Go
@@ -14,11 +61,5 @@ jobs:
           go-version: ${{ matrix.go-version }}
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Test without coverage
-        if: matrix.os == 'windows-latest'
-        run:  go test -v -race -count=1 ./...
-      - name: Test with coverage
-        if: matrix.os != 'windows-latest'
-        run:  go test -v -race -count=1 -coverprofile=coverage.out ./...
-      - name: Upload coverage report
-        run: (curl -s https://codecov.io/bash) | bash
+      - name: Test
+        run: go test -v ./...

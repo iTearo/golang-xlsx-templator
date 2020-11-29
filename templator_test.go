@@ -1,4 +1,4 @@
-package xlsx_templator
+package xlsxtemplator
 
 import (
 	"encoding/json"
@@ -60,7 +60,7 @@ func TestFindPropertyInRow(t *testing.T) {
 
 func TestFindSliceInPropertyPath(t *testing.T) {
 	var tests = []struct {
-		ctxJson              string
+		ctxJSON              string
 		property             string
 		expectedPropertyPath []string
 		expectedSlice        []interface{}
@@ -81,7 +81,10 @@ func TestFindSliceInPropertyPath(t *testing.T) {
 			var ctx map[string]interface{}
 
 			//goland:noinspection GoUnhandledErrorResult
-			json.Unmarshal([]byte(testData.ctxJson), &ctx)
+			err := json.Unmarshal([]byte(testData.ctxJSON), &ctx)
+			if err != nil {
+				panic(err)
+			}
 
 			//Act
 			resultPropertyPath, resultSlice, resultOk := findSliceInPropertyPath(ctx, testData.property)
@@ -102,7 +105,7 @@ func TestFindSliceInPropertyPath(t *testing.T) {
 
 func TestRenderCell(t *testing.T) {
 	var tests = []struct {
-		ctxJson           string
+		ctxJSON           string
 		cellValue         string
 		cellBgColor       string
 		cellHMerge        int
@@ -121,7 +124,10 @@ func TestRenderCell(t *testing.T) {
 			var ctx map[string]interface{}
 
 			//goland:noinspection GoUnhandledErrorResult
-			json.Unmarshal([]byte(testData.ctxJson), &ctx)
+			err := json.Unmarshal([]byte(testData.ctxJSON), &ctx)
+			if err != nil {
+				panic(err)
+			}
 
 			cell := xlsx.Cell{
 				Value:  testData.cellValue,
@@ -130,7 +136,7 @@ func TestRenderCell(t *testing.T) {
 			cell.SetStyle(&xlsx.Style{Fill: xlsx.Fill{BgColor: testData.cellBgColor}})
 
 			//Act
-			err := renderCell(&cell, ctx)
+			err = renderCell(&cell, ctx)
 
 			//Assert
 			if cell.Value != testData.expectedValue {
